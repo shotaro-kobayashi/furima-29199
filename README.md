@@ -4,13 +4,13 @@
 
 | Column          | Type   | Options     |
 | --------------  | ------ | ----------- |
-| price           | integer| null: false |
-| text            | text   | null: false | 
-| user_id         | integer| null: false |  
+| price           | integer| foreign_key: true |
+| text            | text   | foreign_key: true | 
+| user_id         | integer| foreign_key: true |  
 | category_id     | integer| null: false |
-| status_id       | string | null: false |
-| delivery_cost_id| string | null: false |
-| area_id         | string | null: false |
+| status_id       | integer| null: false |
+| delivery_cost_id| integer| null: false |
+| area_id         | integer| null: false |
 | days_id         | integer| null: false |
 
 belongs_to:users
@@ -39,7 +39,7 @@ has_many:products
 | ----------- | ------ | ----------- |
 | postal_code | string | null: false |
 | city        | string | null: false |
-| state_id    | string | null: false |
+| state_id    | integer| null: false |
 | house_number| integer| null: false |
 | telephone   | string | null: false |
 | house_name  | string |             |
@@ -53,3 +53,4 @@ has_many:products
 
 has_one:address
 belongs_to:users
+belongs_to:products
