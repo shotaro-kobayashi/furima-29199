@@ -1,24 +1,54 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## products テーブル
 
-Things you may want to cover:
+| Column        | Type   | Options     |
+| --------------| ------ | ----------- |
+| product_name  | string | null: false |
+| image         | string | null: false |
+| price         | integer| null: false |
+| text          | string | null: false | 
+| user_id       | integer| null: false |  
+| category      | string | null: false |
+| status        | string | null: false |
+| delivery_cost | string | null: false |
+| area          | string | null: false |
+| days          | integer| null: false |
 
-* Ruby version
+belongs_to:users
+has_one:information
 
-* System dependencies
+## users テーブル
 
-* Configuration
+| Column     | Type   | Options     |
+| -----------| ------ | ----------- |
+| user_name  | string | null: false |
+| mail       | string | null: false |
+| password   | string | null: false |
+| nickname   | string | null: false |
+| birth      | integer| null: false |
 
-* Database creation
+has_many:products
+has_many:information
 
-* Database initialization
 
-* How to run the test suite
+## address テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column      | Type   | Options     |
+| ----------- | ------ | ----------- |
+| postal_code | integer| null: false |
+| city        | string | null: false |
+| state       | string | null: false |
+| house_number| integer| null: false |
+| telephone   | integer| null: false |
+| house_name  | string |             |
 
-* Deployment instructions
+## information テーブル
 
-* ...
+| Column     | Type   | Options     |
+| -----------| ------ | ----------- |
+| user_id    | integer| null: false |
+| product_id | integer| null: false |
+
+has_one:address
+belongs_to:users
