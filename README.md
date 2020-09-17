@@ -22,11 +22,14 @@ has_one:information
 
 | Column     | Type   | Options     |
 | -----------| ------ | ----------- |
-| user_name  | string | null: false |
+| first_name | string | null: false |
+| last_name  | string | null: false |
+| first_furi | string | null: false |
+| first_furi | string | null: false |
 | mail       | string | null: false |
 | password   | string | null: false |
 | nickname   | string | null: false |
-| birth      | integer| null: false |
+| date       | integer| null: false |
 
 has_many:products
 has_many:information
@@ -36,7 +39,7 @@ has_many:information
 
 | Column      | Type   | Options     |
 | ----------- | ------ | ----------- |
-| postal_code | integer| null: false |
+| postal_code | string | null: false |
 | city        | string | null: false |
 | state       | string | null: false |
 | house_number| integer| null: false |
