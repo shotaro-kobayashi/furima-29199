@@ -2,12 +2,16 @@
 
 ## products テーブル
 
-| Column        | Type   | Options     |
-| --------------| ------ | ----------- |
-| price         | integer| null: false |
-| text          | text   | null: false | 
-| user_id       | integer| null: false |  
-| category_id   | integer| null: false |
+| Column          | Type   | Options     |
+| --------------  | ------ | ----------- |
+| price           | integer| null: false |
+| text            | text   | null: false | 
+| user_id         | integer| null: false |  
+| category_id     | integer| null: false |
+| status_id       | string | null: false |
+| delivery_cost_id| string | null: false |
+| area_id         | string | null: false |
+| days_id         | integer| null: false |
 
 belongs_to:users
 has_one:information
@@ -23,7 +27,7 @@ has_one:information
 | mail       | string | null: false |
 | password   | string | null: false |
 | nickname   | string | null: false |
-| date       | integer| null: false |
+| date       | date   | null: false |
 
 has_many:products
 
