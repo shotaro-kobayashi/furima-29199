@@ -31,7 +31,7 @@ has_one:information
 | date       | date   | null: false |
 
 has_many:products
-has_one:information
+has_many:information
 
 
 
