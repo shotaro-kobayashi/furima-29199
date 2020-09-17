@@ -4,12 +4,10 @@
 
 | Column        | Type   | Options     |
 | --------------| ------ | ----------- |
-| product_name  | string | null: false |
-| image         | string | null: false |
 | price         | integer| null: false |
-| text          | string | null: false | 
+| text          | text   | null: false | 
 | user_id       | integer| null: false |  
-| category      | string | null: false |
+| category_id   | integer| null: false |
 
 belongs_to:users
 has_one:information
@@ -37,7 +35,7 @@ has_many:products
 | ----------- | ------ | ----------- |
 | postal_code | string | null: false |
 | city        | string | null: false |
-| state       | string | null: false |
+| state_id    | string | null: false |
 | house_number| integer| null: false |
 | telephone   | string | null: false |
 | house_name  | string |             |
