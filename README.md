@@ -10,10 +10,6 @@
 | text          | string | null: false | 
 | user_id       | integer| null: false |  
 | category      | string | null: false |
-| status        | string | null: false |
-| delivery_cost | string | null: false |
-| area          | string | null: false |
-| days          | integer| null: false |
 
 belongs_to:users
 has_one:information
@@ -32,7 +28,7 @@ has_one:information
 | date       | integer| null: false |
 
 has_many:products
-has_many:information
+
 
 
 ## address テーブル
@@ -43,15 +39,15 @@ has_many:information
 | city        | string | null: false |
 | state       | string | null: false |
 | house_number| integer| null: false |
-| telephone   | integer| null: false |
+| telephone   | string | null: false |
 | house_name  | string |             |
 
 ## information テーブル
 
-| Column     | Type   | Options     |
-| -----------| ------ | ----------- |
-| user_id    | integer| null: false |
-| product_id | integer| null: false |
+| Column     | Type   | Options           |
+| -----------| ------ | ------------------|
+| user_id    | integer| foreign_key: true |
+| product_id | integer| foreign_key: true |
 
 has_one:address
 belongs_to:users
