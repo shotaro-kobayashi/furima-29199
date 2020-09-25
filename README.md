@@ -24,7 +24,7 @@ has_one:information
 | first_name | string | null: false |
 | last_name  | string | null: false |
 | first_furi | string | null: false |
-| first_furi | string | null: false |
+| last_furi  | string | null: false |
 | mail       | string | null: false |
 | password   | string | null: false |
 | nickname   | string | null: false |
