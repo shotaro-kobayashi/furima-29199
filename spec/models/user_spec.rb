@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   before do
     @user = FactoryBot.build(:user)
+
   end
 
   describe 'ユーザー新規登録' do
@@ -17,6 +18,14 @@ RSpec.describe User, type: :model do
         @user.email = ""    
         @user.valid?     
         expect(@user.errors.full_messages).to include("Email can't be blank")
+      end
+
+      it "emailが重複しては登録できない" do  
+        @user.save
+        another_user = FactoryBot.build(:user)
+        another_user.email = @user.email
+        another_user.valid?
+        expect(another_user.errors.full_messages).to include("Email has already been taken")
       end
 
       it "emailに＠がなくては登録できない" do
@@ -63,10 +72,8 @@ RSpec.describe User, type: :model do
       end
 
       it "ユーザー本名のフリガナが、名字で必須であること" do
-        @user.last_furi = ""
-        
-        @user.valid?
-        
+        @user.last_furi = ""        
+        @user.valid?       
         expect(@user.errors.full_messages).to include("Last furi can't be blank")
       end
 
