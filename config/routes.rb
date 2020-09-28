@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'posts#index'
-  get 'posts/new', to: 'posts#new'
-  
-  resources :posts
-  
-  
+  root to: 'products#index'
+  resources :products    
 end

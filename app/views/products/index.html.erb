@@ -131,8 +131,7 @@
       <li class='list'>
         <%= link_to "#" do %>
         <div class='item-img-content'>
-          <div class="item-img" style="background-image: url(<%= product.image %>);">
-          </div>
+          <%=image_tag  product.image, class:"item-img" %>
         <div class='item-info'>
           <h3 class='item-name'>
               <%= product.product_name %>
@@ -186,8 +185,9 @@
 </div>
 <div class='purchase-btn'>
   <span class='purchase-btn-text'>出品する</span>
-  <a href="#">
+  
+  <%= link_to '0', '/products/new' %>
     <%= image_tag 'camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
-  </a>
+  
 </div>
 <%= render "shared/footer" %>
