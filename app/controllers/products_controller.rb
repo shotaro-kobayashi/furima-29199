@@ -9,10 +9,8 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @products = Product.create(product_params)
-    # @users = @products.users.new(user_params)
-    @products.save
-    if @products.save
+    @product = Product.create(product_params)
+    if @product.save
       redirect_to root_path
     else
       render :new

@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Product, type: :model do
   before do
-    @product = FactoryBot.build(:product)
+    @user = FactoryBot.create(:user)
+    @product = FactoryBot.build(:product, user: @user)
   end
 
   describe '商品情報登録' do
@@ -73,17 +74,53 @@ RSpec.describe Product, type: :model do
         expect(@product.errors.full_messages).to include("User must exist")
       end
 
+      it "--を示すid値（1）だとcategoryを出品登録できない" do
+        @product.category_id = "１"
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Category is not a number")
+      end
+
+      it "--を示すid値（1）だとareaを出品登録できない" do
+        @product.area_id = "１"
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Area is not a number")
+      end
+
+      it "--を示すid値（1）だとdelivery_costを出品登録できない" do
+        @product.delivery_cost_id = "１"
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Delivery cost is not a number")
+      end
+
+      it "--を示すid値（1）だとdayを出品登録できない" do
+        @product.day_id = "１"
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Day is not a number")
+      end
+
+      it "--を示すid値（1）だとstatusを出品登録できない" do
+        @product.status_id = "１"
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Status is not a number")
+      end
+
+      it "priceが10000000円以上だと出品登録できない" do
+        @product.price = "１0000000"
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Price is not included in the list")
+      end
+
     end
 
     context '登録がうまくいくとき' do
       it "情報を全て入力すれば登録できる" do
         expect(@product).to be_valid
-        binding.pry
       end
       it "値段は¥300~¥9,999,999の間であれば登録できる" do
         @product.price = "500"
         expect(@product).to be_valid
       end
     end
+
   end
 end
