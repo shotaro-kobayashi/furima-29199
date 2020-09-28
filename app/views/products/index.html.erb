@@ -127,9 +127,10 @@
     <ul class='item-lists'>
 
       <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
+  <%if @products.present?%>
     <% @products.each do |product| %>
       <li class='list'>
-        <%= link_to "#" do %>
+        <%= link_to product_path(product.id),method: :get do %>
         <div class='item-img-content'>
           <%=image_tag  product.image, class:"item-img" %>
         <div class='item-info'>
@@ -139,6 +140,7 @@
           <div class='item-price'>
              <span><%= product.price %>円<br>(税込み)</span>
     <% end %>
+  <% end %>
            
           <%# 商品が売れていればsold outを表示しましょう %>
           <div class='sold-out'>
@@ -186,7 +188,7 @@
 <div class='purchase-btn'>
   <span class='purchase-btn-text'>出品する</span>
   
-  <%= link_to '0', '/products/new' %>
+  <%= link_to '#', '/products/new' %>
     <%= image_tag 'camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
   
 </div>
