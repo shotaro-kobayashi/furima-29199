@@ -34,9 +34,9 @@ class ProductsController < ApplicationController
 
   def destroy
     if @product.destroy
-    redirect_to root_path
+      redirect_to root_path
     else
-    redirect_to action: :edit
+      redirect_to action: :edit
     end
   end
   
