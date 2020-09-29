@@ -36,7 +36,7 @@ class ProductsController < ApplicationController
     if @product.destroy
       redirect_to root_path
     else
-      redirect_to action: :edit
+      redirect_to action: :show
     end
   end
   
