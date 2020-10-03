@@ -1,28 +1,11 @@
 class OrdersController < ApplicationController
+  before_action :set_product, only: [:index, :create]
+
   def index
-    # @orders = Product.all
-    @product = Product.find(params[:product_id])
     @order = OrderAddress.new
   end
 
-  def transaction
-    @product = Product.find(params[:id])
-    if current_user.id  == @product.user_id || @product.orders.length >= 1
-      redirect_to root_path
-    end
-      @address =  Address.new
-  end
-
   def create
-    @product = Product.find(params[:product_id])
-    #@order = Order.create(user_id: current_user.id, product_id: params[:id])
-    #@address = @order.build_address(address_params)
-    #p @address
-    #if @address.save
-      #redirect_to root_path
-    #else
-      #render :orders
-    #end
     @order = OrderAddress.new(order_params)
     if @order.valid?
       pay_item
@@ -41,11 +24,16 @@ private
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  
     Payjp::Charge.create(
-      amount: @product.price,  # 商品の値段
-      card: order_params[:token],    # カードトークン
-      currency: 'jpy'                 # 通貨の種類（日本円）
+      amount: @product.price,  
+      card: order_params[:token],    
+      currency: 'jpy'                 
     )
   end
+
+  def set_product
+    @product = Product.find(params[:product_id])
+  end
+  
 end
