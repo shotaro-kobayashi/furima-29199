@@ -15,7 +15,7 @@
 | day_id         | integer| null: false |
 
 belongs_to:users
-has_one:information
+has_one:orders
 
 ## users テーブル
 
@@ -31,7 +31,7 @@ has_one:information
 | date       | date   | null: false |
 
 has_many:products
-has_many:information
+has_many:orders
 
 
 
@@ -46,9 +46,9 @@ has_many:information
 | telephone   | string | null: false |
 | house_name  | string |             |
 
-belongs_to:information
+belongs_to: order
 
-## information テーブル
+## Orders テーブル
 
 | Column     | Type   | Options           |
 | -----------| ------ | ------------------|
