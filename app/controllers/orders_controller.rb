@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
   before_action :set_product, only: [:index, :create]
-
+  before_action :authenticate_user!, only:[:create,:index]
+  before_action :move_to_index, only:[:create,:index]
+  before_action :move_to_index2, only:[:create,:index]
   def index
     @order = OrderAddress.new
   end
@@ -35,5 +37,17 @@ private
   def set_product
     @product = Product.find(params[:product_id])
   end
-  
+
+  def move_to_index
+    if user_signed_in? && current_user.id == @product.user_id
+      redirect_to root_path
+    end
+  end
+
+  def move_to_index2
+    if @product.orders.length >= 1 
+        redirect_to root_path
+    end
+  end
+
 end
